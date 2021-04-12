@@ -15,8 +15,12 @@ class CreateFiles extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('path')->nullable();
+            $table->integer("groesse")->nullable();
+            $table->integer('ownerid')->nullable();
+            $table->string('ownername')->nullable();
             $table->timestamps();
-            $table->integer("Dateigroeße");
         });
     }
 

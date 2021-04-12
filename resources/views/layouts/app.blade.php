@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    <!-- Dropzone.js-->
+    <script src="dropzone-5.7.0/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="dropzone-5.7.0/dist/dropzone.css"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
