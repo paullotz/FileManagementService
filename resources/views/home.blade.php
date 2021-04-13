@@ -8,19 +8,9 @@ use Illuminate\Support\Facades\Storage;
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-
-
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
-                    {{ __('You are logged in!') }}
-                        <?php
-                        echo asset('storage/Hallo.txt');
-
-                        Storage::delete('Hallo.txt');
-
-                        ?>
-
+                    {{ __('Du bist eingeloggt!') }}
                 </div>
             </div>
             <br/>
@@ -40,6 +30,8 @@ use Illuminate\Support\Facades\Storage;
 
                         <input type="hidden" name="user" value="{{Auth::user()->name}}"/>
                     </form>
+
+                    <!--{{storage_path()}}-->
 
                 </div>
             </div>

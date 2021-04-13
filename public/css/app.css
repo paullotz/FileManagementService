@@ -10,17 +10,21 @@ h1 {
     display: inline-block;
     animation: pulse;
     animation-duration: 1s;
+    margin-top: 20px;
 }
 
-.jumbotron {
+#heroImage {
+    margin-top: 0;
     background-color: rgb(201, 228, 253);
 }
 
 footer {
     background-color: rgb(201, 228, 253);
+
 }
 
 #pWhyUs {
     text-align: justify;
+    margin-top: 20px;
     margin-bottom: 25px;
 }
