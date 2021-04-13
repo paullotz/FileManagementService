@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Storage;
                     <form action="{{route('store')}}" class="dropzone" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="file" />
+
                         <input type="hidden" name="user" value="{{Auth::user()->name}}"/>
                     </form>
 
