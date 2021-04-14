@@ -49,6 +49,12 @@
             />
             File Management Service
         </a>
+        <a class="navbar-brand" href="/home">
+            File-Upload
+        </a>
+        <a class="navbar-brand" href="/kontakt">
+            Contact
+        </a>
         <button
             class="navbar-toggler"
             type="button"
@@ -120,7 +126,8 @@
         >PSABS File Management Service</a
         >;
 
-        <a class="text-dark" href="/impressum">Impressum</a>
+        <a class="text-dark" href="/impressum">Impressum;</a>
+        <a class="text-dark" href="/kontakt">Contact</a>
     </div>
 </footer>
 </html>
