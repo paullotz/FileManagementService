@@ -34,4 +34,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/home', [App\Http\Controllers\StorageController::class, 'store'])->name('store');
+Route::post('/delete', [App\Http\Controllers\StorageController::class, 'delete'])->name('filedelete');
 

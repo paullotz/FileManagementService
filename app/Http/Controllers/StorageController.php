@@ -36,4 +36,19 @@ class StorageController extends Controller
             return redirect('/home')->with('status',$uploadfile);
 
     }
+
+    function delete(Request $request)
+    {
+        $id=$request->id;
+
+        $file=File::where("id",$id)->first();
+
+        if(unlink($file->path))
+            File::where("id",$id)->delete();
+
+        $files=File::where('ownername',session('user'))->get();
+
+        return view('home',['files'=>$files]);
+    }
+
 }
