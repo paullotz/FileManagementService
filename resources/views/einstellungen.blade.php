@@ -37,9 +37,28 @@ if ($txtName != false && $txtEMail != false) {
 }
 
 // Logic for changing Password
-echo '<script type ="text/JavaScript">';
-echo 'alert("JavaScript Alert Box by PHP")';
-echo '</script>';  ?>
+$txtPassword = "";
+$txtPasswordRepeat = "";
+
+isset($_GET["txtPassword"]) ? $txtPassword = $_GET["txtPassword"] : false;
+isset($_GET["txtPasswordRepeat"]) ? $txtPasswordRepeat = $_GET["txtPasswordRepeat"] : false;
+$hashedPW = password_hash($txtPassword, PASSWORD_DEFAULT);
+
+if($txtPassword == $txtPasswordRepeat){
+    if($txtPassword){
+        DB::update('update users set password=? where id = ?',[$hashedPW, $id]);
+    }
+
+}else{
+    //Sweetalert ersetzen
+    echo '<script type ="text/JavaScript">';
+    echo 'alert("Die Passwörter stimmen nicht überein!")';
+    echo '</script>';
+}
+
+?>
+
+
 
 @extends('layouts.app')
 
@@ -85,12 +104,12 @@ echo '</script>';  ?>
                     <form method="GET" action="/einstellungen">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Neues Passwort:</span>
-                            <input type="password" class="form-control" name="txtPassword" required>
+                            <input id = "txtPassword" type="password" class="form-control" name="txtPassword" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Passwort wiederholen:</span>
-                            <input type="password" class="form-control" name="txtPasswordRepeat" required>
+                            <input id = "txtPasswordRepeat" type="password" class="form-control" name="txtPasswordRepeat" required>
                         </div>
 
                         <button type="submit" class="btn btn-secondary" id="btnChangePassword">Passwort ändern</button>
