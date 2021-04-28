@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-
-        <div class="container">
-            <h2>Contact</h2>
-        </div>
-        <div class="container">
+    <div class="container"  style="margin-top: 20px">
             <form action="mailto:helpdesk@gmail.com" enctype="text/plain" method="POST" >
                 <label for="Anrede">Anrede: </label>
                 <br>
@@ -29,6 +24,5 @@
                 <br>
                 <button type="submit" id="inputbutton" class="btn btn-primary">Nachricht absenden</button>
             </form>
-        </div>
     </div>
 @endsection

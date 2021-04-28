@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container"  style="margin-top: 20px">
     <h1 class="adsimple-121715575">Impressum</h1>
     <p class="adsimple-121715575">Informationspflicht laut §5 E-Commerce Gesetz, §14 Unternehmensgesetzbuch, §63 Gewerbeordnung und Offenlegungspflicht laut §25 Mediengesetz.</p>
     <p class="adsimple-121715575">PSABS<br />Höchstädtplatz 6, Gebäude A, <br />1200 Wien, <br />Österreich</p>

@@ -38,7 +38,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img
                 src="{{ asset('favicon.png') }}"
                 width="30"
@@ -47,7 +47,6 @@
                 alt=""
                 loading="lazy"
             />
-            File Management Service
         </a>
         <a class="navbar-brand" href="/home">
             File-Upload
@@ -94,6 +93,10 @@
 
 
                         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/einstellungen">
+                                Einstellungen
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
