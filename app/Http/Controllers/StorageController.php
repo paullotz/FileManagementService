@@ -39,6 +39,7 @@ class StorageController extends Controller
 
     function delete(Request $request)
     {
+
         $id=$request->id;
 
         $file=File::where("id",$id)->first();

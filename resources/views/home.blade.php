@@ -38,13 +38,14 @@ use Illuminate\Support\Facades\Storage;
             <br>
             <div class="card">
                 <div class="card-header">{{ __('Files') }}</div>
-                @foreach($files as $file)
                 <form action="{{route('filedelete')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id" value="{{$file->id}}"/>
-                    <input type="submit" value="{{$file->name}}"/>
-                </form>
+                @foreach($files as $file)
+                    <input type="radio" name="id" id="{{$file->id}}" value="{{$file->id}}"/>
+                        <label for="{{$file->id}}">{{$file->name}}</label><br>
                 @endforeach
+                    <input type="submit" value="File Delete"/>
+                </form>
             </div>
         </div>
     </div>
