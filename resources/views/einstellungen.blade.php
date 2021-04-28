@@ -45,6 +45,7 @@ isset($_GET["txtPasswordRepeat"]) ? $txtPasswordRepeat = $_GET["txtPasswordRepea
 $hashedPW = password_hash($txtPassword, PASSWORD_DEFAULT);
 
 if($txtPassword == $txtPasswordRepeat){
+
     if($txtPassword){
         DB::update('update users set password=? where id = ?',[$hashedPW, $id]);
     }

@@ -54,6 +54,9 @@
         <a class="navbar-brand" href="/kontakt">
             Contact
         </a>
+        <a class="navbar-brand" href="/searchFile">
+            Search
+        </a>
         <button
             class="navbar-toggler"
             type="button"

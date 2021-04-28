@@ -22,6 +22,10 @@ Route::get("/home", function() {
     return view("home");
 });
 
+Route::get("/searchFile", function() {
+    return view("searchFile");
+});
+
 
 Auth::routes();
 
