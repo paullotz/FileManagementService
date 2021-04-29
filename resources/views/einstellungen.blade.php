@@ -1,66 +1,3 @@
-<?php
-use Illuminate\Support\Facades\Auth;
-
-// Loading User Parameters from Database
-$id = Auth::id();
-$users = DB::select("select * from users where id = :id", ["id" => $id]);
-
-$userName = "";
-$userEMail = "";
-$userEMailVerified = "";
-$userAccountCreationDate = "";
-
-foreach ($users as $user) {
-    $userName = $user->name;
-    $userEMail = $user->email;
-    $userEMailVerified = $user->email_verified_at;
-    $userAccountCreationDate = $user->created_at;
-}
-
-if ($userEMailVerified == null) {
-    $userEMailVerified = "Nein";
-} else {
-    $userEMailVerified = "Ja";
-}
-
-// Logic for GET Request
-$txtName = "";
-$txtEMail = "";
-
-isset($_GET["txtName"]) ? $txtName = $_GET["txtName"] : false;
-isset($_GET["txtEMail"]) ? $txtEMail = $_GET["txtEMail"] : false;
-
-if ($txtName != false && $txtEMail != false) {
-    DB::update('update users set name = ?, email=? where id = ?',[$txtName, $txtEMail, $id]);
-
-    header("Refresh:0; url=/einstellungen");
-}
-
-// Logic for changing Password
-$txtPassword = "";
-$txtPasswordRepeat = "";
-
-isset($_GET["txtPassword"]) ? $txtPassword = $_GET["txtPassword"] : false;
-isset($_GET["txtPasswordRepeat"]) ? $txtPasswordRepeat = $_GET["txtPasswordRepeat"] : false;
-$hashedPW = password_hash($txtPassword, PASSWORD_DEFAULT);
-
-if($txtPassword == $txtPasswordRepeat){
-
-    if($txtPassword){
-        DB::update('update users set password=? where id = ?',[$hashedPW, $id]);
-    }
-
-}else{
-    //Sweetalert ersetzen
-    echo '<script type ="text/JavaScript">';
-    echo 'alert("Die Passwörter stimmen nicht überein!")';
-    echo '</script>';
-}
-
-?>
-
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -73,27 +10,35 @@ if($txtPassword == $txtPasswordRepeat){
             <div class="card mb-3">
                 <div class="card-header">Persönliche Daten</div>
                 <div class="card-body">
-                    <form method="GET" action="/einstellungen" class="mb-3">
+                    <form method="post" action="{{ route("updatedata") }}" class="mb-3">
+                        @csrf
+
                         <div class="input-group mb-3">
                             <span class="input-group-text">Name:</span>
-                            <input type="text" class="form-control" id="txtName" name="txtName" value="<?php echo $userName; ?>" required>
+                            <input type="text" class="form-control" id="txtName" name="txtName" value="{{ $user->name }}" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">E-Mail:</span>
-                            <input type="email" class="form-control" id="txtEMail" name="txtEMail" value="<?php echo $userEMail; ?>" required>
+                            <input type="email" class="form-control" id="txtEMail" name="txtEMail" value="{{ $user->email }}" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">E-Mail bestätigt:</span>
                             <input type="text" class="form-control" id="txtEMailVerified"
+                                   <?php $userEMailVerified = "";
+                                   if ($user->email_verified_at == null) {
+                                       $userEMailVerified = "Nein";
+                                   } else {
+                                       $userEMailVerified = "Ja";
+                                   } ?>
                                    value="<?php echo $userEMailVerified; ?>" readonly>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Account erstellt am:</span>
                             <input type="text" class="form-control" id="txtAccountCreationDate"
-                                   value="<?php echo $userAccountCreationDate; ?>" readonly>
+                                   value="{{ $user->created_at }}" readonly>
                         </div>
 
                             <button type="submit" class="btn btn-secondary" id="btnSubmitChanges">Änderungen
@@ -102,7 +47,9 @@ if($txtPassword == $txtPasswordRepeat){
 
                     </form>
 
-                    <form method="GET" action="/einstellungen">
+                    <form method="post" action="{{ route("changepw") }}">
+                        @csrf
+
                         <div class="input-group mb-3">
                             <span class="input-group-text">Neues Passwort:</span>
                             <input id = "txtPassword" type="password" class="form-control" name="txtPassword" required>

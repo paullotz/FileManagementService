@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,10 +11,6 @@ Route::get("/impressum", function() {
     return view("impressum");
 });
 
-Route::get("/einstellungen", function() {
-    return view("einstellungen");
-});
-
 Route::get("/kontakt", function() {
     return view("kontakt");
 });
@@ -22,14 +19,21 @@ Route::get("/home", function() {
     return view("home");
 });
 
-Route::get("/searchFile", function() {
-    return view("searchFile");
+Route::get("/search", function() {
+    return view("search");
 });
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Routes for StorageController
 Route::post('/home', [App\Http\Controllers\StorageController::class, 'store'])->name('store');
 Route::post('/delete', [App\Http\Controllers\StorageController::class, 'delete'])->name('filedelete');
+
+// Routes for SettingsController
+Route::get('/einstellungen', [App\Http\Controllers\SettingsController::class, 'loaduser']);
+Route::post('/updatedata', [App\Http\Controllers\SettingsController::class, 'updatedata'])->name("updatedata");
+Route::post('/changepw', [App\Http\Controllers\SettingsController::class, 'changepw'])->name("changepw");
 

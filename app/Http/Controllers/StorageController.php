@@ -15,41 +15,39 @@ class StorageController extends Controller
 
     function store(Request $request)
     {
-        $name=$request->file('file')->getClientOriginalName();
-        $uploaddir = public_path().'/storage/';
+        $name = $request->file('file')->getClientOriginalName();
+        $uploaddir = public_path() . '/storage/';
 
         $uploadfile = $uploaddir . $name;
 
         $file = new File();
-        $file->name= $name;
-        $file->path= $uploadfile;
-        $file->ownername= $request->user()->name;
+        $file->name = $name;
+        $file->path = $uploadfile;
+        $file->ownername = $request->user()->name;
         $file->save();
 
-        if(move_uploaded_file($request->file('file'), $uploadfile))
-        {
+        if (move_uploaded_file($request->file('file'), $uploadfile)) {
             session(['status' => 'Upload Successfull']);
             $request->session()->now('status', 'Task was successful!');
-            return redirect('/home')->with('status',$uploadfile);
+            return redirect('/home')->with('status', $uploadfile);
             //return view('home');
-        }
-        else
-            return redirect('/home')->with('status',$uploadfile);
+        } else
+            return redirect('/home')->with('status', $uploadfile);
 
     }
 
     function delete(Request $request)
     {
 
-        $id=$request->id;
+        $id = $request->id;
 
-        $file=File::where("id",$id)->first();
+        $file = File::where("id", $id)->first();
 
-        if(unlink($file->path))
-            File::where("id",$id)->delete();
+        if (unlink($file->path))
+            File::where("id", $id)->delete();
 
-        $files=File::where('ownername',session('user'))->get();
+        $files = File::where('ownername', session('user'))->get();
 
-        return view('home',['files'=>$files]);
+        return view('home', ['files' => $files]);
     }
 }

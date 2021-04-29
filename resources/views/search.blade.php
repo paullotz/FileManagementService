@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
                     </div>
 
                     <div class="card-body">
-                        <form method="GET" action="/searchFile">
+                        <form method="GET" action="/search">
 
 
                             <div class="form-group">
@@ -31,36 +31,18 @@ use Illuminate\Support\Facades\Storage;
                         <div id="result">
 
                             <?php
-
-
                             // Loading User Parameters from Database
                             $id = Auth::id();
-
                             @$searchName= $_GET["name"];
-
-
                             if($searchName!=null){
-
                                 $files = DB::select("select name from files where name like '%$searchName%' ");
-
-
-                              //  var_dump($files);
-
-
-
+                                //  var_dump($files);
                                 foreach ($files as $file) {
-
-                                   // C:\Users\____\PhpstormProjects\FileManagementService\public\favicon.png
-
+                                    // C:\Users\____\PhpstormProjects\FileManagementService\public\favicon.png
                                     echo '<p>',$file->name,'</p><br>';
                                     echo "  <img src=\"storage/$file->name\" class=\"img-thumbnail\" height=\"200px\" width=\"200px\">";
-
                                 }
-
-
-
                             }
-
                             ?>
 
                         </div>

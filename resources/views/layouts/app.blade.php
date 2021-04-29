@@ -18,6 +18,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Sweet Alerts -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <!-- Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}"/>
 
@@ -54,9 +57,6 @@
         <a class="navbar-brand" href="/kontakt">
             Contact
         </a>
-        <a class="navbar-brand" href="/searchFile">
-            Search
-        </a>
         <button
             class="navbar-toggler"
             type="button"
@@ -89,6 +89,10 @@
                         </li>
                     @endif
                 @else
+                    <a class="navbar-brand" href="/search">
+                        Search
+                    </a>
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
