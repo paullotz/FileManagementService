@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Storage;
 
                             if($searchName!=null){
 
-                                $files = DB::select("select path from files where name like '%$searchName%' ");
+                                $files = DB::select("select name from files where name like '%$searchName%' ");
 
 
                               //  var_dump($files);
@@ -52,9 +52,9 @@ use Illuminate\Support\Facades\Storage;
 
                                    // C:\Users\____\PhpstormProjects\FileManagementService\public\favicon.png
 
-                                    echo '<p>',$file->path,'</p><br>';
-                                    echo "<img src=\"{{ asset('favicon.png')}}\">";
-                                    echo "  <img src=\"{{storage_path().'\app\storage\\'.$file->name}}" class="img-thumbnail" height="200px" width="200px">"
+                                    echo '<p>',$file->name,'</p><br>';
+                                    echo "  <img src=\"storage/$file->name\" class=\"img-thumbnail\" height=\"200px\" width=\"200px\">";
+
                                 }
 
 
@@ -64,7 +64,7 @@ use Illuminate\Support\Facades\Storage;
                             ?>
 
                         </div>
-                        <img src="{{ asset('../storage/app/storage/Unbekannt.png')}}">
+
 
                     </div>
                 </div>
