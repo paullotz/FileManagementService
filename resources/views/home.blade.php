@@ -44,12 +44,15 @@ use Illuminate\Support\Facades\Storage;
                     <input type="radio" name="id" id="{{$file->id}}" value="{{$file->id}}"/>
 
                         <label for="{{$file->id}}">{{$file->name}}</label><br>
-                        <img src="{{asset('/storage/Termine.PNG')}}" class="img-thumbnail" height="200px" width="200px">
+
+                        <img src="{{storage_path().'\app\storage\\'.$file->name}}" class="img-thumbnail" height="200px" width="200px">
+                    <p>{{storage_path().'\app\storage\\'.$file->name}}</p>
                         <br>
                 @endforeach
                     <input type="submit" value="File Delete"/>
                 </form>
             </div>
+            <img src="{{storage_path().'\app\storage\Unbekannt.PNG'}}">
         </div>
     </div>
 </div>

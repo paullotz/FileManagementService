@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\Storage;
 
                                     echo '<p>',$file->path,'</p><br>';
                                     echo "<img src=\"{{ asset('favicon.png')}}\">";
-
+                                    echo "  <img src=\"{{storage_path().'\app\storage\\'.$file->name}}" class="img-thumbnail" height="200px" width="200px">"
                                 }
 
 
@@ -65,6 +65,7 @@ use Illuminate\Support\Facades\Storage;
 
                         </div>
                         <img src="{{ asset('../storage/app/storage/Unbekannt.png')}}">
+
                     </div>
                 </div>
 
