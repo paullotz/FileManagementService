@@ -40,19 +40,18 @@ use Illuminate\Support\Facades\Storage;
                 <div class="card-header">{{ __('Files') }}</div>
                 <form action="{{route('filedelete')}}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="submit" value="File Delete"/>
                 @foreach($files as $file)
                     <input type="radio" name="id" id="{{$file->id}}" value="{{$file->id}}"/>
 
                         <label for="{{$file->id}}">{{$file->name}}</label><br>
 
-                        <img src="{{storage_path().'\app\storage\\'.$file->name}}" class="img-thumbnail" height="200px" width="200px">
-                    <p>{{storage_path().'\app\storage\\'.$file->name}}</p>
+                        <img src="{{'/storage/'.$file->name}}" class="img-thumbnail" height="200px" width="200px">
+
                         <br>
                 @endforeach
-                    <input type="submit" value="File Delete"/>
                 </form>
             </div>
-            <img src="{{storage_path().'\app\storage\Unbekannt.PNG'}}">
         </div>
     </div>
 </div>

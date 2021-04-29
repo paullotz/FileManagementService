@@ -16,7 +16,8 @@ class StorageController extends Controller
     function store(Request $request)
     {
         $name=$request->file('file')->getClientOriginalName();
-        $uploaddir = storage_path().'/app/storage/';
+        $uploaddir = public_path().'/storage/';
+
         $uploadfile = $uploaddir . $name;
 
         $file = new File();
@@ -51,5 +52,4 @@ class StorageController extends Controller
 
         return view('home',['files'=>$files]);
     }
-
 }
