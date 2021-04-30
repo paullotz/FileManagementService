@@ -19,9 +19,9 @@ Route::get("/home", function() {
     return view("home");
 });
 
-Route::get("/search", function() {
+/*Route::get("/search", function() {
     return view("search");
-});
+});*/
 
 
 Auth::routes();
@@ -36,4 +36,7 @@ Route::post('/delete', [App\Http\Controllers\StorageController::class, 'delete']
 Route::get('/einstellungen', [App\Http\Controllers\SettingsController::class, 'loaduser']);
 Route::post('/updatedata', [App\Http\Controllers\SettingsController::class, 'updatedata'])->name("updatedata");
 Route::post('/changepw', [App\Http\Controllers\SettingsController::class, 'changepw'])->name("changepw");
+
+// Routes for SearchController
+Route::get("/search", [\App\Http\Controllers\SearchController::class, "search"])->name("search");
 
