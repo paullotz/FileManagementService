@@ -22,33 +22,47 @@ session(['user' => Auth::user()->name]);
             <div class="card-header">File Upload</div>
             <div class="card-body">
 
-                <form action="{{route('store')}}" class="dropzone" method="post" enctype="multipart/form-data">
+                <form action="{{ route('store') }}" class="dropzone" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="file"/>
 
                     <input type="hidden" name="user" value="{{Auth::user()->name}}"/>
                 </form>
-
-            <!--{{storage_path()}}-->
-
             </div>
         </div>
 
+        <!-- Schauen ob der Files Array Empty ist damit kein leerer Table angezeigt wird -->
+        @forelse($files as $f)
         <div class="card">
             <div class="card-header">{{ __('Files') }}</div>
-            <form action="{{route('filedelete')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="submit" value="File Delete"/>
-                @foreach($files as $file)
-                    <input type="radio" name="id" id="{{$file->id}}" value="{{$file->id}}"/>
-
-                    <label for="{{$file->id}}">{{$file->name}}</label><br>
-
-                    <img src="{{'/storage/'.$file->name}}" class="img-thumbnail" height="200px" width="200px">
-
-                    <br>
-                @endforeach
-            </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Filename</th>
+                        <th scope="col">Show Image</th>
+                        <th scope="col">Delete File</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($files as $file)
+                        <form action="{{ route('filedelete') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" id="id" name="id" value="{{ $file->id }}">
+                            <tr>
+                                <th>{{ $file->id }}</th>
+                                <th>{{ $file->name }}</th>
+                                @if ($file->name)
+                                    <th><input type="submit" value="Show"/></th>
+                                @endif
+                                <th><input type="submit" value="Delete"/></th>
+                            </tr>
+                        </form>
+                    @endforeach
+                    </tbody>
+                </table>
         </div>
+        @empty
+        @endforelse
     </div>
 @endsection

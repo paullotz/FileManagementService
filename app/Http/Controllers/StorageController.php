@@ -8,13 +8,11 @@ use App\Models\File;
 
 class StorageController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         return view('home');
     }
 
-    function store(Request $request)
-    {
+    function store (Request $request) {
         $name = $request->file('file')->getClientOriginalName();
         $uploaddir = public_path() . '/storage/';
 
@@ -29,18 +27,15 @@ class StorageController extends Controller
         if (move_uploaded_file($request->file('file'), $uploadfile)) {
             session(['status' => 'Upload Successfull']);
             $request->session()->now('status', 'Task was successful!');
-            return redirect('/home')->with('status', $uploadfile);
-            //return view('home');
-        } else
-            return redirect('/home')->with('status', $uploadfile);
 
+            return view('/home')->with('status', $uploadfile);
+        } else {
+            return view('/home')->with('status', $uploadfile);
+        }
     }
 
-    function delete(Request $request)
-    {
-
+    function delete(Request $request) {
         $id = $request->id;
-
         $file = File::where("id", $id)->first();
 
         if (unlink($file->path))
