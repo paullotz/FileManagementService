@@ -24,6 +24,10 @@ class StorageController extends Controller
         $file->ownername = $request->user()->name;
         $file->save();
 
+        echo move_uploaded_file($request->file('file'), $uploadfile);
+
+        dd($uploadfile);
+
         if (move_uploaded_file($request->file('file'), $uploadfile)) {
             session(['status' => 'Upload Successfull']);
             $request->session()->now('status', 'Task was successful!');

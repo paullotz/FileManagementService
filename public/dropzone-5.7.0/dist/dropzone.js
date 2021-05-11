@@ -998,6 +998,7 @@ function (_Emitter) {
         // Receives `file`
         success: function success(file) {
           if (file.previewElement) {
+              location.reload();
             return file.previewElement.classList.add("dz-success");
           }
         },
@@ -2110,7 +2111,7 @@ function (_Emitter) {
 
       fileReader.readAsDataURL(file);
     } // `mockFile` needs to have these attributes:
-    // 
+    //
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.
@@ -3179,6 +3180,7 @@ Dropzone.discover = function () {
         // Create a dropzone unless auto discover has been disabled for specific element
         if (Dropzone.optionsForElement(dropzone) !== false) {
           result.push(new Dropzone(dropzone));
+
         } else {
           result.push(undefined);
         }

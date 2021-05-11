@@ -11,6 +11,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="{{ asset('js.js')}}"></script>
+    <!--Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"/>
     <!-- Scripts / Needs to be added -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 

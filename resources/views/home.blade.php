@@ -22,7 +22,7 @@ session(['user' => Auth::user()->name]);
             <div class="card-header">File Upload</div>
             <div class="card-body">
 
-                <form action="{{ route('store') }}" class="dropzone" method="post" enctype="multipart/form-data">
+                <form action="{{ route('store') }}"  onsubmit="return true;" class="dropzone" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="file"/>
 
@@ -30,9 +30,8 @@ session(['user' => Auth::user()->name]);
                 </form>
             </div>
         </div>
-
         <!-- Schauen ob der Files Array Empty ist damit kein leerer Table angezeigt wird -->
-        @forelse($files as $f)
+
         <div class="card">
             <div class="card-header">{{ __('Files') }}</div>
                 <table class="table">
@@ -46,7 +45,7 @@ session(['user' => Auth::user()->name]);
                     </thead>
                     <tbody>
                     @foreach($files as $file)
-                        <form action="{{ route('filedelete') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('filedelete') }}" onsubmit="check();" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" id="id" name="id" value="{{ $file->id }}">
                             <tr>
@@ -62,7 +61,7 @@ session(['user' => Auth::user()->name]);
                     </tbody>
                 </table>
         </div>
-        @empty
-        @endforelse
+
     </div>
+    <br><br><br>
 @endsection
