@@ -21,6 +21,36 @@
     </div>
 
     <div class="container">
+
+        <video id="animation" width="640" height="480" style="margin-left:240px;" autoplay loop>
+            <source src="animation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <script>
+            let x = document.getElementById("animation");
+            $( document ).ready(function() {
+                x.volume = 0.2;
+            });
+            let options = {
+                root: null,
+                rootMargin:'0px',
+                threshold:1.0
+            };
+            let callback = (entries, )=>{
+                entries.forEach(entry=>{
+                    if(entry.target.id == 'animation'){
+                        if(entry.isIntersecting){
+                            entry.target.play();
+                        }
+                        else{
+                            entry.target.pause();
+                        }
+                    }
+                })
+            }
+            let observer = new IntersectionObserver(callback,options);
+            observer.observe(document.querySelector('#animation'));
+        </script>
         <h2 class="text-center">Why us?</h2>
 
         <p id="pWhyUs" class="lead">
