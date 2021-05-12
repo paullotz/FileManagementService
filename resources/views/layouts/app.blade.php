@@ -11,18 +11,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="{{ asset('js.js')}}"></script>
-    <!--Sweet Alert -->
-    <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"/>
-    <!-- Scripts / Needs to be added -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Sweet Alerts -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('swal.js')}}"></script>
 
     <!-- Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}"/>
@@ -127,9 +124,13 @@
 
 
 </div>
-<main>
-    @yield('content')
-</main>
+
+    <main>
+        @yield('content')
+    </main>
+
+    <link href="{{ asset('lightbox2/css/lightbox.css')}}" rel="stylesheet" />
+    <script src="{{ asset('lightbox2/js/lightbox.js')}}"></script>
 </body>
 
 <footer class="text-center text-lg-start fixed-bottom">

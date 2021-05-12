@@ -19,11 +19,6 @@ Route::get("/home", function() {
     return view("home");
 });
 
-/*Route::get("/search", function() {
-    return view("search");
-});*/
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,3 +36,5 @@ Route::post('/changepw', [App\Http\Controllers\SettingsController::class, 'chang
 // Routes for SearchController
 Route::get("/search", [\App\Http\Controllers\SearchController::class, "search"])->name("search");
 
+// Route for EmailController
+Route::get("/send-mail", [\App\Http\Controllers\EmailController::class, "sendEmail"])->name("sendEmail");

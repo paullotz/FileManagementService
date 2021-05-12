@@ -45,9 +45,7 @@ class StorageController extends Controller
         if (unlink($file->path))
             File::where("id", $id)->delete();
 
-        $files = File::where('ownername', session('user'))->get();
-
-        return view('home', ['files' => $files]);
+        return redirect('/home');
     }
 
     function download(Request $request) {
