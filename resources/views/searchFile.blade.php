@@ -25,8 +25,19 @@ use Illuminate\Support\Facades\Storage;
                     </form>
                     <div id="result">
                         @foreach($files as $file)
+
                             <p>{{ $file->name }}</p>
+
+                            @if( pathinfo("storage/".$file->name, PATHINFO_EXTENSION)=="jpg" || pathinfo("storage/".$file->name, PATHINFO_EXTENSION)=="png")
                             <img src="storage/{{ $file->name }}" class="img-thumbnail" height="200px" width="200px">
+                                <br>
+                                <br>
+                            @else
+                                <img src="dokument.png" class="img-thumbnail" height="100px" width="100px">
+                                <br>
+                                <br>
+                            @endif
+
                         @endforeach
                     </div>
                 </div>

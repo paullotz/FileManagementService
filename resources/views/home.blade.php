@@ -39,8 +39,9 @@ session(['user' => Auth::user()->name]);
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Filename</th>
-                        <th scope="col">Show Image</th>
+                        <th scope="col">Image Preview</th>
                         <th scope="col">Delete File</th>
+                        <th scope="col">Download File</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,12 +52,22 @@ session(['user' => Auth::user()->name]);
                             <tr>
                                 <th>{{ $file->id }}</th>
                                 <th>{{ $file->name }}</th>
-                                @if ($file->name)
-                                    <th><input type="submit" value="Show"/></th>
+                                @if( pathinfo("storage/".$file->name, PATHINFO_EXTENSION)=="jpg" || pathinfo("storage/".$file->name, PATHINFO_EXTENSION)=="png")
+                                    <th><img src="storage/{{ $file->name }}" class="img-thumbnail" height="200px" width="200px"></th>
+                                @else
+                                    <th><img src="dokument.png" class="img-thumbnail" height="100px" width="100px"></th>
+
                                 @endif
                                 <th><input type="submit" value="Delete"/></th>
-                            </tr>
+
                         </form>
+                                <form action="{{ route('downloadfile') }}" method="post" enctype="multipart/form-data">
+
+                                    <th><input type="submit" value="Download"/></th>
+
+                                </form>
+
+                       </tr>
                     @endforeach
                     </tbody>
                 </table>

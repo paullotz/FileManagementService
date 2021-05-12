@@ -49,4 +49,26 @@ class StorageController extends Controller
 
         return view('home', ['files' => $files]);
     }
+
+    function download(Request $request) {
+
+        echo '<script type="text/javascript" language="Javascript">
+            console.log("download");
+            </script> ';
+
+
+$id = $request->id;
+
+        $file = File::where("id", $id)->first();
+
+        /*
+        if (unlink($file->path))
+            File::where("id", $id)->delete();
+*/
+        // $files = File::where('ownername', session('user'))->get();
+
+        return Storage::download($file->name);
+
+        //return view('home', ['files' => $files]);
+    }
 }

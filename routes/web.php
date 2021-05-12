@@ -31,6 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Routes for StorageController
 Route::post('/home', [App\Http\Controllers\StorageController::class, 'store'])->name('store');
 Route::post('/delete', [App\Http\Controllers\StorageController::class, 'delete'])->name('filedelete');
+Route::post('/download', [App\Http\Controllers\StorageController::class, 'download'])->name('downloadfile');
 
 // Routes for SettingsController
 Route::get('/einstellungen', [App\Http\Controllers\SettingsController::class, 'loaduser']);
