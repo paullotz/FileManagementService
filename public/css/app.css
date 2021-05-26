@@ -29,8 +29,12 @@ footer {
     margin-bottom: 25px;
 }
 
-.navbar-brand{
-    background-color: white;
+.navbar-brand {
+    color: black;
+}
+
+.nav-link {
+    color: black;
 }
 
 nav{

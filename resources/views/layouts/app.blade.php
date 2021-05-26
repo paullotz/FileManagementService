@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,24 +25,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}"/>
 
     <!-- Styles -->
-
-    <script>
-        a = 0;
-        btn = document.getElementById("darkmode");
-        b = document.getElementById("pagestyle");
-
-        function changeTheme(){
-            if(a == 0){
-                b.setAttribute("href", '{{ asset('css/app.css') }}');
-                a++;
-            }else{
-                b.setAttribute("href", '{{ asset('css/darkApp.css') }}');
-                a--;
-            }
-        }
-    </script>
-
-
     <link id="pagestyle" href="{{ asset('css/darkApp.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -72,9 +54,6 @@
         <a class="navbar-brand" href="/home">
             File-Upload
         </a>
-        <a class="navbar-brand" href="/kontakt">
-            Contact
-        </a>
 
         <button
             class="navbar-toggler"
@@ -88,16 +67,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-
-                <button type="button" class="btn btn-secondary" id="darkmode" onclick="changeTheme()">dark mode</button>
-
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/kontakt">Contact</a>
+                </li>
 
                 <!-- Authentication Links -->
                 @guest
@@ -113,9 +87,9 @@
                         </li>
                     @endif
                 @else
-                    <a class="navbar-brand" href="/search">
-                        Search
-                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Contact</a>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -140,8 +114,9 @@
                             </form>
                         </div>
                     </li>
-
                 @endguest
+
+                <button type="button" class="btn btn-secondary" id="changeTheme" onclick="changeTheme(this)">White Mode</button>
             </ul>
         </div>
     </nav>
@@ -155,6 +130,7 @@
 
     <link href="{{ asset('lightbox2/css/lightbox.css')}}" rel="stylesheet" />
     <script src="{{ asset('lightbox2/js/lightbox.js')}}"></script>
+    <script src="{{ asset('darkmode.js')}}"></script>
 </body>
 
 <footer class="text-center text-lg-start fixed-bottom">
