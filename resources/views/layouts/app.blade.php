@@ -25,7 +25,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}"/>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+        a = 0;
+        btn = document.getElementById("darkmode");
+        b = document.getElementById("pagestyle");
+
+        function changeTheme(){
+            if(a == 0){
+                b.setAttribute("href", '{{ asset('css/app.css') }}');
+                a++;
+            }else{
+                b.setAttribute("href", '{{ asset('css/darkApp.css') }}');
+                a--;
+            }
+        }
+    </script>
+
+
+    <link id="pagestyle" href="{{ asset('css/darkApp.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -38,9 +56,9 @@
 
     <title>File Management Service</title>
 </head>
-<body>
+<body id="darkBody">
 <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id = "navbar" class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="/">
             <img
                 src="{{ asset('favicon.png') }}"
@@ -57,6 +75,7 @@
         <a class="navbar-brand" href="/kontakt">
             Contact
         </a>
+
         <button
             class="navbar-toggler"
             type="button"
@@ -75,6 +94,11 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+
+                <button type="button" class="btn btn-secondary" id="darkmode" onclick="changeTheme()">dark mode</button>
+
+
+
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -136,12 +160,12 @@
 <footer class="text-center text-lg-start fixed-bottom">
     <div class="text-center p-3">
         © 2021 Copyright:
-        <a class="text-dark" href="#"
+        <a id = "darkText" href="#"
         >PSABS File Management Service</a
         >;
 
-        <a class="text-dark" href="/impressum">Impressum;</a>
-        <a class="text-dark" href="/kontakt">Contact</a>
+        <a id = "darkText" href="/impressum">Impressum;</a>
+        <a id = "darkText" href="/kontakt">Contact</a>
     </div>
 </footer>
 </html>

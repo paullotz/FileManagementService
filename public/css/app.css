@@ -28,3 +28,11 @@ footer {
     margin-top: 20px;
     margin-bottom: 25px;
 }
+
+.navbar-brand{
+    background-color: white;
+}
+
+nav{
+    background-color: white;
+}

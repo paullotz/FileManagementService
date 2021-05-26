@@ -9,22 +9,22 @@
         @endif
 
         <form action="{{ route("sendEmail") }}" enctype="text/plain" method="GET">
-            <label for="Anrede">Anrede: </label>
+            <label id = "darkText" for="Anrede">Anrede: </label>
             <br>
             <select class="form-control" name="anrede" id="Anrede">
                 <option value="Herr">Herr</option>
                 <option value="Frau">Frau</option>
             </select>
             <br>
-            <label for="name">Name: </label>
+            <label id = "darkText" for="name">Name: </label>
             <br>
             <input class="form-control" type="text" name="name" id="name">
             <br>
-            <label for="email">E-Mail: </label>
+            <label id = "darkText" for="email">E-Mail: </label>
             <br>
             <input class="form-control" type="email" name="email" id="email">
             <br>
-            <label for="nachricht">Nachricht: </label>
+            <label id = "darkText" for="nachricht">Nachricht: </label>
             <br>
             <textarea class="form-control" name="message" id="message"></textarea>
             <br>

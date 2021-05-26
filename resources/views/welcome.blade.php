@@ -51,7 +51,7 @@
             let observer = new IntersectionObserver(callback,options);
             observer.observe(document.querySelector('#animation'));
         </script>
-        <h2 class="text-center">Why us?</h2>
+        <h2 id = "darkText" class="text-center">Why us?</h2>
 
         <p id="pWhyUs" class="lead">
             PSABS – Filemanagment Service is more than just a secure way to organize and deposit files.
