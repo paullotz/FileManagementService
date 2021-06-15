@@ -88,7 +88,11 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="/search">Contact</a>
+                        <a class="nav-link" href="/search">Search</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/public">Public</a>
                     </li>
 
                     <li class="nav-item dropdown">

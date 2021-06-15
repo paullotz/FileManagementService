@@ -11,8 +11,12 @@ function check(){
                 swal("Poof! Your imaginary file has been deleted!", {
                     icon: "success",
                 });
+
             } else {
                 swal("Your imaginary file is safe!");
+
             }
         });
+
+    return false;
 }

@@ -20,6 +20,7 @@ class CreateFiles extends Migration
             $table->integer("groesse")->nullable();
             $table->integer('ownerid')->nullable();
             $table->string('ownername')->nullable();
+            $table->boolean('ispublic')->nullable();
             $table->timestamps();
         });
     }

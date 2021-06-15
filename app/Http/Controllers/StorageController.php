@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\File;
+use Illuminate\Support\Facades\Storage;
 
 class StorageController extends Controller
 {
@@ -22,6 +23,7 @@ class StorageController extends Controller
         $file->name = $name;
         $file->path = $uploadfile;
         $file->ownername = $request->user()->name;
+        $file->ispublic = false;
         $file->save();
 
         echo move_uploaded_file($request->file('file'), $uploadfile);
@@ -50,23 +52,28 @@ class StorageController extends Controller
 
     function download(Request $request) {
 
-        echo '<script type="text/javascript" language="Javascript">
-            console.log("download");
-            </script> ';
-
-
-$id = $request->id;
+        $id = $request->id;
 
         $file = File::where("id", $id)->first();
 
+        return response()->download($file->path);
+
         /*
-        if (unlink($file->path))
-            File::where("id", $id)->delete();
-*/
-        // $files = File::where('ownername', session('user'))->get();
 
-        return Storage::download($file->name);
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file->name).'"');
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Expires: 0");
+        header('Content-Length: ' . filesize($file->path));
+        header('Pragma: public');
 
-        //return view('home', ['files' => $files]);
+
+        //Clear system output buffer
+        flush();
+
+        return readfile($file->path);
+        die();
+        */
+
     }
 }

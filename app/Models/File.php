@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $fillable = [
-        'name', 'path', 'groesse', 'ownerid', 'ownername'
+        'name', 'path', 'groesse', 'ownerid', 'ownername','ispublic'
     ];
 }

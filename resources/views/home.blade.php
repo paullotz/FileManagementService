@@ -32,6 +32,7 @@ session(['user' => Auth::user()->name]);
                 </form>
             </div>
         </div>
+
         <!-- Schauen ob der Files Array Empty ist damit kein leerer Table angezeigt wird -->
         @if(!$files->isEmpty())
         <div class="card">
@@ -44,6 +45,7 @@ session(['user' => Auth::user()->name]);
                     <th scope="col">Image Preview</th>
                     <th scope="col">Delete File</th>
                     <th scope="col">Download File</th>
+                    <th scope="col">Public</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,8 +67,19 @@ session(['user' => Auth::user()->name]);
                             <th><input type="submit" value="Delete"/></th>
                     </form>
 
-                    <form action="{{ route('downloadfile') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('download') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$file->id}}">
                         <th><input type="submit" value="Download"/></th>
+                    </form>
+                    <form action="{{ route('setpublic') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$file->id}}">
+                        @if($file->ispublic == false)
+                            <th><input type="submit" value="Set Public"/></th>
+                        @elseif($file->ispublic == true)
+                            <th><input type="submit" value="Set Private"/></th>
+                        @endif
                     </form>
                     </tr>
                 @endforeach

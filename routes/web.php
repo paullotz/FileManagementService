@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Routes for StorageController
 Route::post('/home', [App\Http\Controllers\StorageController::class, 'store'])->name('store');
 Route::post('/delete', [App\Http\Controllers\StorageController::class, 'delete'])->name('filedelete');
-Route::post('/download', [App\Http\Controllers\StorageController::class, 'download'])->name('downloadfile');
+Route::post('/download', [App\Http\Controllers\StorageController::class, 'download'])->name('download');
 
 // Routes for SettingsController
 Route::get('/einstellungen', [App\Http\Controllers\SettingsController::class, 'loaduser']);
@@ -35,6 +35,9 @@ Route::post('/changepw', [App\Http\Controllers\SettingsController::class, 'chang
 
 // Routes for SearchController
 Route::get("/search", [\App\Http\Controllers\SearchController::class, "search"])->name("search");
+
+Route::get("/public", [\App\Http\Controllers\publicController::class, "search"])->name("public");
+Route::post("/setpublic", [\App\Http\Controllers\publicController::class, "setpublic"])->name("setpublic");
 
 // Route for EmailController
 Route::get("/send-mail", [\App\Http\Controllers\EmailController::class, "sendEmail"])->name("sendEmail");
