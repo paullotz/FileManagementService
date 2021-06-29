@@ -10,7 +10,7 @@ function changeTheme() {
         a++;
     } else {
         styleLink.setAttribute("href", 'css/darkApp.css');
-        btnChangeTheme.innerText = "White Mode";
+        btnChangeTheme.innerText = "Light Mode";
         a--;
     }
 }

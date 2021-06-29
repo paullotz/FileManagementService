@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+<!--<script src="{{ asset('js/app.js') }}" defer></script>-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,7 +40,7 @@
 </head>
 <body id="darkBody">
 <div id="app">
-    <nav id = "navbar" class="navbar navbar-expand-lg ">
+    <nav id="navbar" class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="/">
             <img
                 src="{{ asset('favicon.png') }}"
@@ -51,10 +51,10 @@
                 loading="lazy"
             />
         </a>
-        <a class="navbar-brand" href="/home">
-            File-Upload
-        </a>
 
+        <a class="navbar-brand" href="/">
+            PSABS
+        </a>
         <button
             class="navbar-toggler"
             type="button"
@@ -69,10 +69,6 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/kontakt">Contact</a>
-                </li>
-
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -88,6 +84,9 @@
                     @endif
                 @else
                     <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/search">Search</a>
                     </li>
 
@@ -96,7 +95,8 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -118,34 +118,38 @@
                             </form>
                         </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kontakt">Contact</a>
+                    </li>
                 @endguest
 
-                <button type="button" class="btn btn-secondary" id="changeTheme" onclick="changeTheme(this)">White Mode</button>
+                <button type="button" class="btn btn-secondary" id="changeTheme" onclick="changeTheme(this)">Light
+                    Mode
+                </button>
             </ul>
         </div>
     </nav>
-
-
 </div>
 
-    <main>
-        @yield('content')
-    </main>
+<main>
+    @yield('content')
+</main>
 
-    <link href="{{ asset('lightbox2/css/lightbox.css')}}" rel="stylesheet" />
-    <script src="{{ asset('lightbox2/js/lightbox.js')}}"></script>
-    <script src="{{ asset('darkmode.js')}}"></script>
+<link href="{{ asset('lightbox2/css/lightbox.css')}}" rel="stylesheet"/>
+<script src="{{ asset('lightbox2/js/lightbox.js')}}"></script>
+<script src="{{ asset('darkmode.js')}}"></script>
 </body>
 
 <footer class="text-center text-lg-start fixed-bottom">
     <div class="text-center p-3">
         © 2021 Copyright:
-        <a id = "darkText" href="#"
+        <a id="darkText" href="#"
         >PSABS File Management Service</a
         >;
 
-        <a id = "darkText" href="/impressum">Impressum;</a>
-        <a id = "darkText" href="/kontakt">Contact</a>
+        <a id="darkText" href="/impressum">Impressum;</a>
+        <a id="darkText" href="/kontakt">Contact</a>
     </div>
 </footer>
 </html>

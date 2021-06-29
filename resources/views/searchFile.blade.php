@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
     <div class="container" style="margin-top: 20px">
         @guest
             <div class="alert alert-danger text-center" role="alert">
-                Du musst dich einloggen, um deine Einstellungen sehen zu können!
+                Du musst dich einloggen, um die Search Funktion benutzen zu können!
             </div>
         @else
             <div class="card">
